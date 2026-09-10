@@ -28,23 +28,27 @@ print(hash(100))
 # 1. Create a dictionary that tracks game high scores using tuples as keys where each tuple contains
 # (player_name, game_name), and values are the scores. Add at least 3 entries and retrieve one score.
 
-
+# Monster hunter characters boo Nata
 Scores = {
-    ("Gemma", "Monster_Hunter_Wilds"): 8008132,
-    ("Alma", "Monster_Hunter_Freedom_Unite"): 943534,
-    ("Nata", "Monster_Hunter_Dos"): -9999999,
-    ("Arkveld", "Monster_Hunter_World"): 69696969,
+    ("Gemma", "Monster Hunter Wilds"): 8008132,
+    ("Alma", "Monster Hunter Freedom_Unite"): 943534,
+    ("Nata", "Monster Hunter Dos"): -9999999,
+    ("Arkveld", "Monster Hunter World"): 69696969,
 }
-player_name = input("Enter a player name: ")
-game_name = input("Enter a game name: ")
+# alma plays freedom unite and gets a score of 943534 shes a tryhard
+player_name = "Alma"
+game_name = "Monster Hunter Freedom_Unite"
 score = Scores.get((player_name, game_name))
+print(f"Score for {player_name} in {game_name}: {score}")
 
 # 2. Write code that compares the time to check if an element exists in a list vs a dictionary with 100,000
 # elements. Print which is faster and by how much.
 # Not gonna lie I dont know how to do that heres what I can do
-# List_Data = list(range(100000))
-# Dict_Data = dict(range(100000))
-# Not much...
+
+
+#List_Data = list(range(100000))
+#Dict_Data = dict(range(100000))
+
 
 # 2.2 Beginner Execerise
 # Given this dictionary:
@@ -54,10 +58,12 @@ score = Scores.get((player_name, game_name))
 # 2. Print all the temperatures using values()
 # 3. Print how many days are in the dictionary
 
+# dictionary restated again very redudant notes
 temps = {"Monday": 72, "Tuesday": 75, "Wednesday": 68}
-print(temps.keys())
-print(temps.values())
-print(len(temps))
+# printing the keys, values, and length of the dictionary
+print("the days are:", list(temps.keys()))
+print("the temperatures are:", list(temps.values()))
+print("The amount of days in the list is:", len(temps))
 
 # 2.2 Intermediate
 # 1. Find and print the highest and lowest temperatures from temps.
@@ -65,21 +71,25 @@ print(len(temps))
 # 3. Use setdefault() to add "Thursday" with a value of 70, but only if it doesn't exist.
 # 4. Demonstrate that views are dynamic: create a keys view, add a new day, show the view updated.
 
+# finding the highest and lowest temperatures and than print
 highest_temp = max(temps.values())
 lowest_temp = min(temps.values())
 print(f"Highest: {highest_temp}, Lowest: {lowest_temp}")
 
+#checking if friday is in the dictionary and nah print nah 
 if "Friday" in temps:
     print("Friday is in the dictonary")
 else:
     print("Friday is not in the dictionary")
 
+# using setdefault to add thursday because it doesnt exist you knew that whyd you word it like that
 temps.setdefault("Thursday", 70)
 print(temps)
 
-#
+# making key views and printing it as is pre addition
 keys_view = temps.keys()
 print("Keys before:", keys_view)
+# adding friday and printing again shoud of probably done this using setdefault but oh well
 temps["Friday"] = 76
 print("Keys after:", keys_view)
 
@@ -91,18 +101,26 @@ print("Keys after:", keys_view)
 # 2. Finds the most and least expensive items (both name and price)
 # 3. Compares memory usage between prices.keys() and list(prices.keys())
 # 4. Uses update() to add 3 new products, then shows all products
+
+# importing sys it checks the memory usage that explanation is more for me when i look this over later
 import sys
 
+# dictionary
 prices = {"laptop": 999, "phone": 699, "tablet": 449, "watch": 299}
 
+# calculating total and avarage price used len because dictionaries can change instead of using 4
 total = sum(prices.values())
 average = total / len(prices)
 
+# finding most and expensive items using max and min I have no clue what lambda does just added it through the notes
+# im not sure but i think it has somthing to do with .items and item [1] prints the values of whatever shows up first with the constraints
 most_expensive_item = max(prices.items(), key=lambda item: item[1])
 least_expensive_item = min(prices.items(), key=lambda item: item[1])
 
+# orinting all the things you wanted
 print("Total value:", total)
 print("Average price:", average)
+# Lambda made them tuples so I had to use indexing
 print("Most expensive item:", most_expensive_item[0], most_expensive_item[1])
 print("Least expensive item:", least_expensive_item[0], least_expensive_item[1])
 
@@ -139,8 +157,10 @@ for fruit, color in colors.items():
 # 4. Given a list [1, 2, 3, 4, 5], use extended unpacking to get the first element, last element, and
 # middle elements separately.
 
+
 prices = {"coffee": 4.50, "tea": 3.00, "juice": 5.25}
 
+# Items automatically assign to the keys 
 for item, price in prices.items():
     total_price = price * 1.10
     print(f"{item}: ${price} + tax = ${total_price}")
@@ -178,8 +198,10 @@ print("Last:", last)
 # 4. Write a performance test comparing items() iteration vs keys() with lookup for a dictionary with
 # 50,000 entries.
 
+
 scores = {"Alice": 88, "Bob": 65, "Carol": 92, "Dave": 71, "Eve": 58}
 
+# top student matches to whatever key variable comes out on t
 top_student, top_score = max(scores.items(), key=lambda item: item[1])
 
 print(f"Top Student: {top_student} with a score of {top_score}")
@@ -203,5 +225,5 @@ deviations = {student: round(score - class_average, 2) for student, score in sco
 print(f"Class Average: {class_average}")
 print("Deviations from Average:", deviations)
 
-# I dont know how to do 4
+# I dont know how to do 4 
 

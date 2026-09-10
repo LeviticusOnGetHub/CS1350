@@ -72,6 +72,7 @@ for student in grades:
 # Write code that takes a products dictionary and a product name. Print the price if found, or "Product not available" if not found.
 # Test with both existing and non-existing products.
 
+# The worst fast food items I could think of.
 Products = {
     "Burger King Taco": 1.99,
     "Taco Bell Crispy Chicken Sandwich Taco": 2.50,
@@ -94,7 +95,7 @@ inventory["mung_daal"] = 10
 inventory["Truffles"] = 3
 inventory["Shnitzels"] = 7
 
-# 1.3Intermediate
+# 1.3 Intermediate
 # 1. Given scores = {"Team A": 45, "Team B": 38}, update Team B's score to 52 and add "Team C"
 # with 41 points.
 # 2. Remove "Team A" using pop() and print what score they had
