@@ -198,6 +198,10 @@ activity_level = {
     name: "Frequent" if total_minutes.get(name, 0) >= 200 else "Occasional"
     for name in contact_book
 }
+# Print
+print("Phone book:", phone_book)
+print("Local contacts (Fort Wayne):", local_contacts)
+print("Activity level:", activity_level)
 
 # Expected Output
 # === Phase 4: Comprehensions ===
@@ -221,6 +225,8 @@ activity_level = {
 # Inactive below 50
 # Print every contact with their total and tier, formatted Mom: 355 min (Gold).
 
+print("Phase 5")
+
 # turing contacts into tiers based on total time talked to very human throw it in a dicronary
 contact_tiers = {}
 
@@ -242,7 +248,7 @@ def get_tier(minutes):
 # Part B — Count (12 pts)
 # Count how many contacts fall in each tier using a loop and if/elif. Print each count.
 
-# kinda the same as before but we start with a counter dictionary and we can use
+# kinda the same as before but we start with a counter dictionary to get all the minutes for parcing through each tier
 tier_counter = {"Platinum": 0, "Gold": 0, "Silver": 0, "Bronze": 0, "Inactive": 0}
 for contact, minutes in total_minutes.items():
     if minutes >= 400:
@@ -325,9 +331,11 @@ for contact, minutes in total_minutes.items():
 # aligns in 8.
 
 # printing the name, category, city, minutes, and tier of each contact in a formatted table and using allignment
+
+print("Phase 6")
 print(f"{'Name':<12} {'Category':<10} {'City':<15} {'Minutes':<8} {'Tier':<10}")
 
-
+#
 for name, total in sorted(
     total_minutes.items(), key=lambda item: item[1], reverse=True
 ):
