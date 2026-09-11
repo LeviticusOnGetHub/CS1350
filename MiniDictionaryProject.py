@@ -178,7 +178,7 @@ print("Contacts per city:", contacts_per_city)
 
 print("Phase 4")
 
-# we get to use details again instead of using new crap pop in phone to get the spefic phone numbers
+# we get to use details again instead of using new crap pop in phone to get the spefic phone numbers : for spacing
 phone_book = {name: details["phone"] for name, details in contact_book.items()}
 
 # 2. local_contacts — name → phone, but only for contacts whose city is "Fort Wayne".
@@ -192,7 +192,7 @@ local_contacts = {
 # 3. activity_level — every contact mapped to "Frequent" if their total minutes are 200 or more,
 # otherwise "Occasional". (Build this from total_minutes.)
 
-# same bones as before yet again but we use everything from before in bits use total minutes from before to get all our numbers
+# same bones as before again but we use everything from before in bits use total minutes from before to get all our numbers
 # and see if there over 200 minutes to calssify them as frequent or occasional callers
 activity_level = {
     name: "Frequent" if total_minutes.get(name, 0) >= 200 else "Occasional"
@@ -263,6 +263,7 @@ for contact, minutes in total_minutes.items():
         tier = "Inactive"
 
     tier_counter[tier] += 1
+    # keys from tier_counter are now called tiers
     contact_tiers[contact] = tier
 
 # Part C — Rank (14 pts)
@@ -276,7 +277,7 @@ for contact, minutes in total_minutes.items():
 most_name = max(total_minutes, key=total_minutes.get)
 least_name = min(total_minutes, key=total_minutes.get)
 
-# finding most and least contacted as variables to be used later in the print statements
+# finding contact names instead f
 most_contacted = (most_name, total_minutes[most_name])
 least_contacted = (least_name, total_minutes[least_name])
 
@@ -290,7 +291,7 @@ print(f"Least contacted: {least_contacted[0]} ({least_contacted[1]} min)")
 print(f"Total minutes: {total_minutes_sum}")
 print(f"Average per contact: {average_minutes:.2f}")
 
-
+print("Above average contacts:")
 for contact, minutes in total_minutes.items():
     if minutes > average_minutes:
         print(f"{contact}: {minutes}")
@@ -332,16 +333,17 @@ for contact, minutes in total_minutes.items():
 
 # printing the name, category, city, minutes, and tier of each contact in a formatted table and using allignment
 
+# had no clue for alignment just counted the one with the most characters in each table and added 3 extra spaces
 print("Phase 6")
-print(f"{'Name':<12} {'Category':<10} {'City':<15} {'Minutes':<8} {'Tier':<10}")
+print(f"{'Name':<12} {'Category':<11} {'City':<15} {'Minutes':<8} {'Tier':<11}")
 
-#
+# same thing as in phase 3 looking for name keys in total but we sort in reverse because it jsut prints the other way around
 for name, total in sorted(
     total_minutes.items(), key=lambda item: item[1], reverse=True
 ):
     details = contact_book[name]
     print(
-        f"{name:<12} {details['category']:<10} {details['city']:<15} {total:>8} {contact_tiers[name]:<10}"
+        f"{name:<12} {details['category']:<11} {details['city']:<15} {total:>8} {contact_tiers[name]:<11}"
     )
 
 print(
