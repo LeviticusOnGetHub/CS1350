@@ -131,7 +131,10 @@ for department, employees in company.items():
         print(f"{employee} {salaries}")
 
 # looking for the avarage salary per department
-for department, employees in company.items():
-    avg_salary = sum(employees.values()) / len(employees)
-    print(f"The avarage salary per department")
-    
+most_paid_employee, most_paid_salary = max(((employee, salary)
+        for employees in company.values()
+        for employee, salary in employees.items()
+    ),
+    key=lambda item: item[1],
+)
+print(f"The highest-paid employee is {most_paid_employee} with ${most_paid_salary}")
