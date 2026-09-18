@@ -138,3 +138,65 @@ most_paid_employee, most_paid_salary = max(((employee, salary)
     key=lambda item: item[1],
 )
 print(f"The highest-paid employee is {most_paid_employee} with ${most_paid_salary}")
+
+
+# Week 2 part 2
+# Beginner
+# 1. Create a set called vowels containing all vowels (a, e, i, o, u).
+# 2. Create a set from the list [1, 2, 2, 3, 3, 3, 4, 4, 4, 4]. How many elements does it have?
+# 3. What's wrong with this code? empty = {}
+
+vowels = set({"a","e","i","o","u","y"})
+
+number_list = set([1, 2, 2, 3, 3, 3, 4, 4, 4, 4])
+print("The number list has", len(number_list), "unique elements in it")
+print("The set of vowels is", vowels)
+
+# it makes an empty dictionary and I assume you wanted us to make sets
+
+#Intermediate
+# 1. Given text = "mississippi", create a set of all unique characters. How many unique letters are there?
+# 2. Remove duplicates from this list and convert back to a list: emails = ["a@b.com", "c@d.com", "a@b.com", "e@f.com", "c@d.com"]
+# 3. Why does this fail? s = {[1, 2], [3, 4]}
+
+text = "mississippi"
+unique_characters = set(text)
+print("the unique characters in the word mississippi are:", sorted(unique_characters,))
+print("the amount of unique characters in the word mississippi is:", len(unique_characters))
+
+emails = ["a@b.com", "c@d.com", "a@b.com", "e@f.com", "c@d.com"]
+unique_emails = list(set(emails))
+print("The list of unique emails are:", unique_emails)
+
+# number three fails because sets cant have maluable elaments
+# the numberlist from before was made into a set to remove duplicates 
+# It still exists as a list
+
+# Advanced
+# 1. Compare the time to check if 999999 is in a set vs a list of 1 million numbers.
+# 2. Create a frozenset and use it as a dictionary key.
+# 3. Given a list of tuples representing edges in a graph, create a set of unique nodes:
+# edges = [(1, 2), (2, 3), (1, 3), (3, 4)]
+# Expected: {1, 2, 3, 4}
+
+# import system time so we can measure for later
+import time
+# start the number list variable and make it fat using range and we dont eant to type out a million numbers
+# we can turn it into a set rather easy by just making a new variable and start calling the list a set with set()
+number_list = list(range(1, 1000001))
+number_set = set(number_list)
+
+# make a start time variable to start the stopwatch 
+stopwatch_go = time.time()
+999999 in number_list
+stopwatch_stop = time.time()
+print("The time taken to see if 999999 is in the list is", stopwatch_stop - stopwatch_go)
+
+stopwatch_go = time.time()
+999999 in number_set
+stopwatch_stop = time.time()
+print("The time taken to see if 999999 is in the set is", stopwatch_stop - stopwatch_go)
+
+felines = frozenset(["Lynx", "Cervelat","Lepord","Cheetah","Panther"])
+feline_dict = {felines: "all felines"}
+print("The dictionary")
