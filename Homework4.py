@@ -305,3 +305,19 @@ print("the students missing something are", missing_either_or)
 # 1. Create a set {1, 2, 3}, add 4, and remove 1.
 # 2. Create a set comprehension that generates all even numbers from 0-20.
 # 3. Use discard() vs remove() to safely try removing an element that doesn't exist.
+
+number_set = set({1,2,3})
+number_set.add(4)
+number_set.remove(1)
+print("the number set using add and remove is", number_set)
+
+even_numbered_set = {x for x in range(21) if x % 2 ==0}
+print(" the even numbered set in the range of 0-20 is:", even_numbered_set)
+
+# it wont get an error its chill like tha
+number_set.discard(5)
+print("heres what the number set looks like when we try to DISCARD a non existing element:", number_set)
+
+# it gets an error 
+number_set.remove(5)
+print("heres what the number set looks like when we try to REMOVE a non existing element:", number_set)
