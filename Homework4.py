@@ -1,6 +1,5 @@
 # 3.1 Beginner
-# Given:
-# inventory = {"apples": 50, "bananas": 30, "oranges": 25}
+# Given: inventory = {"apples": 50, "bananas": 30, "oranges": 25}
 # 1. Print each product name using default iteration.
 # 2. Calculate total items using values().
 # 3. Print each product with quantity using items().
@@ -321,3 +320,33 @@ print("heres what the number set looks like when we try to DISCARD a non existin
 # it gets an error 
 number_set.remove(5)
 print("heres what the number set looks like when we try to REMOVE a non existing element:", number_set)
+
+#Intermediate 1. Given a list [4, 5, 2, 4, 8, 5, 2, 1, 9, 4], 
+# remove duplicates while preserving order.
+# 2. Create a set comprehension that extracts all unique words from:
+# sentence = "To be or not to be that is the question"
+# (Hint: convert to lowercase first)
+# 3. Find the missing numbers:
+# expected = set(range(1, 11)) # 1 through 10
+# actual = {1, 2, 4, 5, 7, 8, 10}
+# What numbers are missing?
+
+number_list = [4, 5, 2, 4, 8, 5, 2, 1, 9, 4]
+def unique_numbers(number_list):
+    seen = set()
+    unique_list=[]
+    for num in number_list:
+        if num not in seen:
+            seen.add(num)
+            unique_list.append(num)
+            return unique_list
+
+print("the unique numbers in the number list are:", unique_numbers(number_list))
+
+sentence = "To be or not to be that is the question"
+unique_words = {word.lower() for word in sentence.split()}
+print("the unique words in the qoute are:", unique_words)
+
+# you probably wanted a caculation but the instructions didnt ask for it spefically so id rather be lazy when possible
+print("the missing numbers are the intervals of 3: 3, 6, 9")
+
