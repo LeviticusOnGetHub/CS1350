@@ -8,6 +8,9 @@
 # Take your Dog class from Exercise 1. Add a method called bark that prints "<name> says Woof!" using
 # self.name. Call bark() on both of your dog instances.
 
+from unicodedata import name
+
+
 class Dog:
     def bark (self):
         print(f"{self.name} says Woof!")
@@ -158,3 +161,175 @@ print("a good score is:", B_Score.letter_grade)
 print("an average score is:", C_Score.letter_grade)
 print("a passable score is:", D_Score.letter_grade)
 print("a bad score is:", F_Score.letter_grade)
+
+# Exercise 4 (5 min)
+# Refactor this flat, procedural student-record script into a Student class with encapsulation. The GPA should be
+# private with a setter that rejects values outside 0.0–4.0. Add a display() method and an honors read-only
+# property (True if GPA >= 3.5).
+
+# Expected output:
+# Alice — Computer Science, GPA: 3.8 (Honors)
+# Error: GPA must be between 0.0 and 4.0
+# Alice — Computer Science, GPA: 3.2
+
+class Student:
+
+    def __init__(self, name, major, gpa):
+        self.name = name
+        self.major = major
+        # Make gpa private with validation (0.0 - 4.0)
+        self._gpa = 0.0
+        self.gpa = gpa
+    @property
+    def gpa(self):
+        return self._gpa
+
+    @gpa.setter
+    def gpa(self, value):
+        if 0.0 <= value <= 4.0:
+            self._gpa = value
+        else:
+            print("Invalid GPA. Must be between 0.0 and 4.0.")
+    @property
+    def honors(self):
+        # Return True if gpa >= 3.5
+        return self._gpa >= 3.5
+
+    def display(self):
+        # Print name, major, gpa, and "(Honors)" if applicable
+        print(f"Name: {self.name}")
+        print(f"Major: {self.major}")
+        print(f"GPA: {self._gpa}")
+        if self.honors:
+            print("(Honors)")
+        print()
+Alice = Student("Alice", "Computer Science", 3.9)
+Alice.display()
+Alice.gpa = 4.1
+Alice.display()
+Alice.gpa = 3.2
+Alice.display()
+
+
+# Exercise 1
+# Create an Animal base class with name and a speak() method that prints "<name> makes a sound". Then
+# create two derived classes — Cat (with a purr() method) and Dog (with a fetch() method). Instantiate one
+# of each and call speak() on both to confirm they inherited it.
+
+# Expected output:
+# Whiskers makes a sound
+# Buddy makes a sound
+# Whiskers is purring
+# Buddy is fetching!
+
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    def speak(self):
+        print(f"{self.name} makes a sound")  
+                 
+class Cat(Animal):
+    def purr(self):
+        
+        # Print "<name> is purring"
+        print(f"{self.name} is purring")
+        
+class Dog(Animal):
+    def fetch(self):
+        # Print "<name> is fetching!"
+        print(f"{self.name} is fetching!")
+        
+
+# Instantiate and test
+whiskers = Cat("Whiskers")
+buddy = Dog("Buddy")
+whiskers.speak()
+buddy.speak()
+whiskers.purr()
+buddy.fetch()
+
+# Exercise 2
+# Override the speak() method from Exercise 1 so that Cat.speak() prints "Meow!" and Dog.speak() prints
+# "Woof!". Create a list containing one Cat and one Dog, loop over it, and call speak() on each.
+
+# Expected output:
+# Whiskers says Meow!
+# Buddy says Woof!
+
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    def speak(self):
+        print(f"{self.name} makes a sound")
+class Cat(Animal):
+    def speak(self):
+        # Print "<name> says Meow!"
+        print(f"{self.name} says Meow!")
+class Dog(Animal):
+    def speak(self):
+        # Print "<name> says Woof!"
+        print(f"{self.name} says Woof!")
+        
+Whiskers = Cat("Whiskers")
+Buddy = Dog("Buddy")
+# used print so i can get get a blank line so i can read it better
+print()
+Whiskers.speak()
+Buddy.speak()
+
+# Exercise 3
+# Create an Employee class with name and salary set in __init__. Then create a Manager subclass that uses
+# super().__init__() to set name and salary, and adds a department attribute. Give Manager a display()
+# method that prints all three.
+
+# Expected output:
+# Sarah — $85,000, Engineering
+
+
+class Employee:
+    def __init__(self, name, salary):
+        self.name = name
+        self.salary = salary
+
+class Manager(Employee):
+    def __init__(self, name, salary, department):
+        # Call super().__init__() for name and salary
+        super().__init__(name, salary)
+        # Add department
+        self.department = department
+
+    def display(self):
+        # Print name, salary, and department
+        print(f"{self.name} — ${self.salary:,}, {self.department}")
+        
+Sarah = Manager("Sarah", 85000, "Engineering")
+
+print()
+Sarah.display()
+
+# Exercise 4
+# Given this diamond hierarchy, predict the MRO of D, then verify by running D.mro(). After that, call
+# d.greet() and confirm which class's version runs.
+
+# Expected output:
+# [<class 'D'>, <class 'B'>, <class 'C'>, <class 'A'>, <class 'object'>]
+
+class A:
+    def greet(self):
+        print("Hello from A")
+class B(A):
+    def greet(self):
+        print("Hello from B")
+class C(A):
+    def greet(self):
+        print("Hello from C")
+class D(B, C):
+    def greet(self):
+        super().greet()
+
+d = D()
+print()
+print(D.mro())
+d.greet()
+
+
