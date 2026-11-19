@@ -20,7 +20,7 @@ class Library:
             # if the book is real only update copies, title and author remain unchanged
         else:
             self.library[isbn] = {'title': title, 'author': author, 'copies': copies}
-
+    # checkout function
     def checkout(self,isbn):
         # check if the book exists and has copies available
         if isbn not in self.library:
@@ -104,13 +104,14 @@ class Session:
     def attendee_count(self):
         return len(self.attendees)
 
-# defining all sessions function
+# defining all sessions function to figure out whos in all sessions
 def all(sessions):
+    # if there in no sessions return an empty set
     if not sessions:
         return set()
     # start with attendees from the first session
     attendees = sessions[0].attendees.copy()
-    # intersect with attendees from the remaining sessions
+    # intersect with attendees from the remaining sessions so on and so forth to find common attendees
     for session in sessions[1:]:
         # update the attendees set to only include those also in the current session
         attendees &= session.attendees
@@ -123,6 +124,7 @@ def just_one(sessions):
     all_attendees = set()
     for session in sessions:
         all_attendees |= session.attendees
+        # for a person in the current session 
     return {attendee for attendee in all_attendees if sum(attendee in s.attendees for s in sessions) == 1}
 
 # no shows calls out attendees who registered but did not attend any session
@@ -130,6 +132,7 @@ def no_shows(registered, sessions):
     attended = set()
     for session in sessions:
         attended |= session.attendees
+        # return the registered attendees without attendances 
     return registered - attended
 
 # sum_sessions returns total headcount and set of all attendees across sessions
@@ -138,6 +141,7 @@ def sum_sessions(sessions):
     all_attendees = set()
     for session in sessions:
         total_headcount += session.attendee_count()
+        # add all attendees from the current session | makes the set add up the unique attendees without duplicates
         all_attendees |= session.attendees
     return total_headcount, all_attendees
 
@@ -146,6 +150,7 @@ def summary(sessions):
     titles_and_headcounts = [(session.title, session.attendee_count()) for session in sessions]
     all_attendees = set()
     for session in sessions:
+        # add all attendees from the current session | makes the set add up the unique attendees without duplicates
         all_attendees |= session.attendees
     return titles_and_headcounts, all_attendees
 
